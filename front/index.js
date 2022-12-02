@@ -28,11 +28,6 @@ imageForm.addEventListener("submit", async event => {
   const imageUrl = url.split('?')[0]
   console.log(imageUrl)
   
-
-  //post requst to our server to store any extra data
-  // const img = document.createElement("img")
-  // img.src = imageUrl
-  // document.body.appendChild(img);
   responseP.innerHTML = "[ UPLOAD WAS SUCCESSFULL ] <br/> "
 })
 
@@ -88,12 +83,12 @@ searhForm.addEventListener("submit", async event => {
     //if a error occurred 
     if (err) {
       console.log(JSON.stringify(err) , err.stack); // an error occurred
-      responseP.innerHTML = "A error occurred. Please check image format. "
+      responseP.innerHTML += " <br/> [ ERROR : INVAILD IMAGE ] <br/> "
     }
     //if there was NO match
     else if(data.FaceMatches.length == 0){
       console.log(data);    
-      responseP.innerHTML = "No Found.. "
+      responseP.innerHTML += "<br/> [ NO MATCH FOUND ] <br/> "
      }
     //if there was a facial match from
     else{    
@@ -102,7 +97,7 @@ searhForm.addEventListener("submit", async event => {
       responseP.innerHTML += "<br/> [ SEARCH RESULTS ] <br/> "+ data.FaceMatches.length + " Total Face Macthes Found: <br/> " +"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ <br/> <br/>"
       let index =1
       for(const i in data.FaceMatches){
-        responseP.innerHTML += "{ Match "+ index +" } Similarity:  " + data.FaceMatches[i].Similarity + "% " + "<br/>"+ " FaceId:  " +  data.FaceMatches[i].Face.FaceId + "<br/>"+ "<br/>"
+        responseP.innerHTML += "{ Match "+ index +" } Similarity:  " + data.FaceMatches[i].Similarity + "% " + "<br/>"+ " FaceId:  " +  data.FaceMatches[i].Face.FaceId + "<br/> <br/>"
         index++
       }
       
